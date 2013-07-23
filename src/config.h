@@ -1,4 +1,4 @@
-#define SERVER_URL "http://futtle.com/pebble/yahoo-weather.php"
+#define SERVER_URL "location of your weather.php file here"
 
 //1=ON;0=OFF - loads appropriate background image
 #define SPLIT_MODE 1
