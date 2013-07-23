@@ -23,8 +23,8 @@ PBL_APP_INFO(MY_UUID,
              RESOURCE_ID_IMAGE_MENU_ICON,
              APP_INFO_WATCH_FACE);
 
-#define TIME_FRAME      (GRect(0, 81, 144, 54))
-#define DATE_FRAME      (GRect(0, 138, 144, 30))
+#define TIME_FRAME      (GRect(0, 80, 144, 60))
+#define DATE_FRAME      (GRect(0, 144, 142, 25))
 
 Window window;          /* main window */
 BmpContainer background_image;
@@ -47,13 +47,16 @@ void request_weather();
 
 void failed(int32_t cookie, int http_status, void* context) {
 	if(cookie == 0 || cookie == WEATHER_HTTP_COOKIE) {
-		weather_layer_set_error(&weather_layer, http_status);
+		weather_layer_set_error(&weather_layer, WEATHER_ICON_NO_WEATHER);
 	}
 	link_monitor_handle_failure(http_status);
 	
 	//Re-request the location and subsequently weather on next minute tick
 	located = false;
 }
+
+
+
 
 void success(int32_t cookie, int http_status, DictionaryIterator* received, void* context) {
 	if(cookie != WEATHER_HTTP_COOKIE) return;
@@ -71,6 +74,7 @@ void success(int32_t cookie, int http_status, DictionaryIterator* received, void
 			weather_layer_set_error(&weather_layer, http_status);
 		}
 	}
+	
   //Today's high temperature
   Tuple* high_tuple = dict_find(received, WEATHER_KEY_HIGH);
   if(high_tuple) {
@@ -87,6 +91,8 @@ void success(int32_t cookie, int http_status, DictionaryIterator* received, void
     weather_layer_set_highlow(&weather_layer, high, low);
 		weather_layer_set_temperature(&weather_layer, temperature_tuple->value->int16);
 	}
+	
+	
 	
 	link_monitor_handle_success();
 }
@@ -218,8 +224,8 @@ void handle_init(AppContextRef ctx) {
   }
   layer_add_child(&window.layer, &background_image.layer.layer);
 
-  res_d = resource_get_handle(RESOURCE_ID_SMALL_26);
-  res_h = resource_get_handle(RESOURCE_ID_BIG_52);
+  res_d = resource_get_handle(RESOURCE_ID_SMALL_20);
+  res_h = resource_get_handle(RESOURCE_ID_HUGE_55);
 
   font_date = fonts_load_custom_font(res_d);
   font_hour = fonts_load_custom_font(res_h);

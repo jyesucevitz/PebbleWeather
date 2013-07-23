@@ -1,20 +1,38 @@
 {
     "media": [
         {
-            "characterRegex": "[0-9 :A-Z a-z \u00b0]",
-            "defName": "SMALL_22",
+            "trackingAdjust": -1,
+            "characterRegex": "[0-9 : A-Z \u00b0]",
+            "defName": "SMALL_14",
+            "type": "font",
+            "file": "fonts/OpenSans-Bold.ttf"
+        },
+        {
+            "trackingAdjust": 2,
+            "characterRegex": "[0-9 :]",
+            "defName": "HUGE_55",
             "type": "font",
             "file": "fonts/BebasNeue.ttf"
         },
         {
-            "characterRegex": "[0-9 :A-Z a-z \u00b0]",
-            "defName": "SMALL_26",
+            "characterRegex": "[0-9 :A-Z a-z]",
+            "defName": "SMALL_20",
             "type": "font",
             "file": "fonts/BebasNeue.ttf"
         },
         {
-            "characterRegex": "[0-9 :A-Z a-z \u00b0]",
-            "defName": "BIG_52",
+            "defName": "ICON_HAIL",
+            "type": "png",
+            "file": "images/hail.png"
+        },
+        {
+            "defName": "ICON_TORNADO",
+            "type": "png",
+            "file": "images/tornado.png"
+        },
+        {
+            "characterRegex": "[0-9 :]",
+            "defName": "BIG_58",
             "type": "font",
             "file": "fonts/MuroRegular.ttf"
         },
@@ -75,37 +93,12 @@
             "file": "images/clear-day.png"
         },
         {
-            "defName": "IMAGE_COLD",
-            "type": "png",
-            "file": "images/cold.png"
-        },
-        {
-            "defName": "IMAGE_HOT",
-            "type": "png",
-            "file": "images/hot.png"
-        },
-        {
-            "defName": "IMAGE_RAIN_SLEET",
-            "type": "png",
-            "file": "images/rain-sleet.png"
-        },
-        {
-            "defName": "IMAGE_RAIN_SNOW",
-            "type": "png",
-            "file": "images/rain-snow.png"
-        },
-        {
             "defName": "ICON_SLEET",
             "type": "png",
             "file": "images/sleet.png"
         },
         {
-            "defName": "IMAGE_SNOW_SLEET",
-            "type": "png",
-            "file": "images/snow-sleet.png"
-        },
-        {
-            "defName": "IMAGE_THUNDER",
+            "defName": "ICON_THUNDER",
             "type": "png",
             "file": "images/thunder.png"
         },
