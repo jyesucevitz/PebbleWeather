@@ -1,4 +1,4 @@
-#define SERVER_URL "YOUR_LINK_TO/weather.php"
+#define SERVER_URL "http://futtle.com/pebble/weather.php"
 
 //1=ON;0=OFF - loads appropriate background image
 #define SPLIT_MODE 1

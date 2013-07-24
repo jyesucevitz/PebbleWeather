@@ -78,7 +78,20 @@ WEATHER ICON
 			weather_layer_set_error(&weather_layer, http_status);
 		}
 	}
-	
+	/*
+SUNSET HOUR
+******************************/
+	Tuple* sunset_h_tuple = dict_find(received, WEATHER_KEY_SUNSET_H);
+		if(sunset_h_tuple) {
+			sunset_h = sunset_h_tuple->value->int16;
+	}
+/*
+SUNSET MINUTE
+******************************/
+		Tuple* sunset_m_tuple = dict_find(received, WEATHER_KEY_SUNSET_M);
+		if(sunset_m_tuple) {
+			sunset_m = sunset_m_tuple->value->int16;
+	}
 /*
 Today's high temperature
 ******************************/
@@ -99,23 +112,10 @@ CURRENT temperature
 	Tuple* temperature_tuple = dict_find(received, WEATHER_KEY_TEMPERATURE);
 	if(temperature_tuple) {
     weather_layer_set_highlow(&weather_layer, high, low);
+		weather_layer_set_sunset(&weather_layer, sunset_h, sunset_m);
 		weather_layer_set_temperature(&weather_layer, temperature_tuple->value->int16);
 	}
-/*
-SUNSET HOUR
-******************************/
-	Tuple* sunset_h_tuple = dict_find(received, WEATHER_KEY_SUNSET_H);
-		if(sunset_h_tuple) {
-			sunset_h = sunset_h_tuple->value->int16;
-	}
-/*
-SUNSET MINUTE
-******************************/
-	Tuple* sunset_m_tuple = dict_find(received, WEATHER_KEY_SUNSET_M);
-		if(sunset_m_tuple) {
-			sunset_m = sunset_m_tuple->value->int16;
-			weather_layer_set_sunset(&weather_layer, sunset_h, sunset_m);
-	}
+
 
 
 

@@ -97,7 +97,8 @@ SUNSET Layer
 ******************************/
 void weather_layer_set_sunset(WeatherLayer* weather_layer, int16_t sunset_h, int16_t sunset_m) {
   snprintf(weather_layer->sunsettime, sizeof(weather_layer->sunsettime), "SUNSET : %d:%02d", sunset_h, sunset_m);
-	text_layer_set_text(&weather_layer->temp_layer_sunset, weather_layer->sunsettime);  
+	text_layer_set_text(&weather_layer->temp_layer_sunset, weather_layer->sunsettime); 
+	layer_mark_dirty(&(weather_layer->layer));
 }
 /*
 ******************************/
