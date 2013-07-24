@@ -38,7 +38,7 @@ $icons = array(
 );
 $sunset = $forecast->daily->data[0]->sunsetTime;
 $sunset_h = date('H', $sunset);
-$sunset_m =  date('m', $sunset);
+$sunset_i =  date('i', $sunset);
 
 $icon_id = $icons[$forecast->currently->icon];
 $response[1] = array('b', $icon_id);
@@ -46,7 +46,7 @@ $response[2] = round($forecast->currently->temperature);
 $response[3] = round($forecast->daily->data[0]->temperatureMax);
 $response[4] = round($forecast->daily->data[0]->temperatureMin);
 $response[5] = intval($sunset_h+1);
-$response[6] = intval($sunset_m);
+$response[6] = intval($sunset_i);
 
 header('Content-Type: application/json');
 header("Cache-Control: no-cache, must-revalidate"); // HTTP/1.1
