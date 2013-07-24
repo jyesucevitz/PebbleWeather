@@ -7,9 +7,11 @@ typedef struct {
 	TextLayer temp_layer;
 	TextLayer temp_layer_background;
 	TextLayer temp_layer_highlow;
+	TextLayer temp_layer_sunset;
 	bool has_weather_icon;
 	char temperature[10];
   char highlow[36];
+  char sunsettime[36];
 } WeatherLayer;
 
 typedef enum {
@@ -33,5 +35,6 @@ void weather_layer_set_icon(WeatherLayer* weather_layer, WeatherIcon icon);
 void weather_layer_set_temperature(WeatherLayer* weather_layer, int16_t temperature);
 void weather_layer_set_highlow(WeatherLayer* weather_layer, int16_t high, int16_t low);
 void weather_layer_set_error(WeatherLayer* weather_layer, int http_status);
+void weather_layer_set_sunset(WeatherLayer* weather_layer, int16_t sunset_h, int16_t sunset_m);
 
 #endif

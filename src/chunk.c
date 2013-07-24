@@ -23,7 +23,7 @@ PBL_APP_INFO(MY_UUID,
              RESOURCE_ID_IMAGE_MENU_ICON,
              APP_INFO_WATCH_FACE);
 
-#define TIME_FRAME      (GRect(0, 80, 144, 60))
+#define TIME_FRAME      (GRect(0, 82, 144, 60))
 #define DATE_FRAME      (GRect(0, 144, 142, 25))
 
 Window window;          /* main window */
@@ -61,10 +61,14 @@ void failed(int32_t cookie, int http_status, void* context) {
 void success(int32_t cookie, int http_status, DictionaryIterator* received, void* context) {
 	if(cookie != WEATHER_HTTP_COOKIE) return;
 
-  int16_t high = 0;
-  int16_t low = 0;
+	int16_t high = 0;
+	int16_t low = 0;
+	int16_t sunset_h = 0;
+	int16_t sunset_m = 0;
 
-  //Weather icon
+/*
+WEATHER ICON
+***************************/
 	Tuple* icon_tuple = dict_find(received, WEATHER_KEY_ICON);
 	if(icon_tuple) {
 		int16_t icon = icon_tuple->value->int16;
@@ -75,25 +79,46 @@ void success(int32_t cookie, int http_status, DictionaryIterator* received, void
 		}
 	}
 	
-  //Today's high temperature
+/*
+Today's high temperature
+******************************/
   Tuple* high_tuple = dict_find(received, WEATHER_KEY_HIGH);
   if(high_tuple) {
     high = high_tuple->value->int16;
   }
-  //Today's low temperature
+/*
+Today's LOW temperature
+******************************/
   Tuple* low_tuple = dict_find(received, WEATHER_KEY_LOW);
   if(low_tuple) {
     low = low_tuple->value->int16;
   }
-  //Current temperature
+/*
+CURRENT temperature
+******************************/
 	Tuple* temperature_tuple = dict_find(received, WEATHER_KEY_TEMPERATURE);
 	if(temperature_tuple) {
     weather_layer_set_highlow(&weather_layer, high, low);
 		weather_layer_set_temperature(&weather_layer, temperature_tuple->value->int16);
 	}
-	
-	
-	
+/*
+SUNSET HOUR
+******************************/
+	Tuple* sunset_h_tuple = dict_find(received, WEATHER_KEY_SUNSET_H);
+		if(sunset_h_tuple) {
+			sunset_h = sunset_h_tuple->value->int16;
+	}
+/*
+SUNSET MINUTE
+******************************/
+	Tuple* sunset_m_tuple = dict_find(received, WEATHER_KEY_SUNSET_M);
+		if(sunset_m_tuple) {
+			sunset_m = sunset_m_tuple->value->int16;
+			weather_layer_set_sunset(&weather_layer, sunset_h, sunset_m);
+	}
+
+
+
 	link_monitor_handle_success();
 }
 

@@ -1,4 +1,4 @@
-#define SERVER_URL "location of your weather.php file here"
+#define SERVER_URL "YOUR_LINK_TO/weather.php"
 
 //1=ON;0=OFF - loads appropriate background image
 #define SPLIT_MODE 1
@@ -11,7 +11,7 @@
 #define UNIT_SYSTEM "f" // c or f
 
 //Check for new weather every X minutes (server code has 14 minute cache header)
-#define FREQUENCY_MINUTES 15
+#define FREQUENCY_MINUTES 10
 
 // POST variables
 #define WEATHER_KEY_LATITUDE 1
@@ -23,7 +23,10 @@
 #define WEATHER_KEY_TEMPERATURE 2
 #define WEATHER_KEY_HIGH 3
 #define WEATHER_KEY_LOW 4
-
+#define WEATHER_KEY_SUNSET_H 5
+#define WEATHER_KEY_SUNSET_M 6
+	
+	
 #define WEATHER_HTTP_COOKIE 1949999771
 #define TIME_HTTP_COOKIE 1199938782
 
