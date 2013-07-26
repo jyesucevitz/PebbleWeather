@@ -1,63 +1,6 @@
 {
     "media": [
         {
-            "trackingAdjust": 1,
-            "characterRegex": "[0-9 :]",
-            "defName": "TIME_45",
-            "type": "font",
-            "file": "fonts/helveticaneue-webfont.ttf"
-        },
-        {
-            "trackingAdjust": 3,
-            "characterRegex": "[a-z A-Z 0-9]",
-            "defName": "DATE_19",
-            "type": "font",
-            "file": "fonts/BebasNeue.ttf"
-        },
-        {
-            "characterRegex": "[0-9\u00b0:?]",
-            "defName": "TEMP_45",
-            "type": "font",
-            "file": "fonts/MuroRegular.ttf"
-        },
-        {
-            "trackingAdjust": 2,
-            "characterRegex": "[0-9 :]",
-            "defName": "TIME_55",
-            "type": "font",
-            "file": "fonts/MuroRegular.ttf"
-        },
-        {
-            "characterRegex": "[a-z A-Z 0-9]",
-            "defName": "DATE_14",
-            "type": "font",
-            "file": "fonts/OpenSans-Regular.ttf"
-        },
-        {
-            "trackingAdjust": -1,
-            "characterRegex": "[0-9:#? A-Z \u00b0]",
-            "defName": "OpenSans_14",
-            "type": "font",
-            "file": "fonts/OpenSans-Bold.ttf"
-        },
-        {
-            "trackingAdjust": 1,
-            "characterRegex": "[0-9 :? A-Z - a-z]",
-            "defName": "OpenSans_16",
-            "type": "font",
-            "file": "fonts/OpenSans-Bold.ttf"
-        },
-        {
-            "defName": "ICON_WIND",
-            "type": "png",
-            "file": "images/wind.png"
-        },
-        {
-            "defName": "ICON_ERROR",
-            "type": "png",
-            "file": "images/error.png"
-        },
-        {
             "defName": "ICON_PARTLY_CLOUDY_NIGHT",
             "type": "png",
             "file": "images/partly-cloudy-night.png"
@@ -66,6 +9,11 @@
             "defName": "ICON_PARTLY_CLOUDY_DAY",
             "type": "png",
             "file": "images/partly-cloudy-day.png"
+        },
+        {
+            "defName": "ICON_WIND",
+            "type": "png",
+            "file": "images/wind.png"
         },
         {
             "defName": "ICON_CLOUDY",
@@ -106,6 +54,45 @@
             "defName": "IMAGE_MENU_ICON",
             "type": "png",
             "file": "images/menu_icon_roboto.png"
+        },
+        {
+            "defName": "ICON_ERROR",
+            "type": "png",
+            "file": "images/error.png"
+        },
+        {
+            "trackingAdjust": 1,
+            "characterRegex": "[0-9 :? A-Z - a-z]",
+            "defName": "OpenSans_16",
+            "type": "font",
+            "file": "fonts/OpenSans-Bold.ttf"
+        },
+        {
+            "trackingAdjust": -1,
+            "characterRegex": "[0-9:#? A-Z \u00b0]",
+            "defName": "OpenSans_14",
+            "type": "font",
+            "file": "fonts/OpenSans-Bold.ttf"
+        },
+        {
+            "trackingAdjust": 2,
+            "characterRegex": "[0-9 :]",
+            "defName": "TIME_55",
+            "type": "font",
+            "file": "fonts/MuroRegular.ttf"
+        },
+        {
+            "characterRegex": "[0-9\u00b0:?]",
+            "defName": "TEMP_45",
+            "type": "font",
+            "file": "fonts/MuroRegular.ttf"
+        },
+        {
+            "trackingAdjust": 3,
+            "characterRegex": "[a-z A-Z 0-9]",
+            "defName": "DATE_19",
+            "type": "font",
+            "file": "fonts/BebasNeue.ttf"
         }
     ],
     "friendlyVersion": "VERSION",

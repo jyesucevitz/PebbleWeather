@@ -1,5 +1,5 @@
 <?php
- 
+
 function get_data($url) {
     $ch = curl_init();
     $timeout = 5;
@@ -10,22 +10,21 @@ function get_data($url) {
     curl_close($ch);
     return $data;
 }
- 
-define('API_KEY', 'YOUR_API_KEY_HERE'); 
+//set your API KEY 
+define('API_KEY', 'API_KEY_HERE');
 $payload = json_decode(file_get_contents('php://input'), true);
 if(!$payload) die();
 $payload[1] /= 10000;
 $payload[2] /= 10000;
 
- 
-$contents = get_data("https://api.forecast.io/forecast/YOUR_API_KEY_HERE/$payload[1],$payload[2]?units=$payload[3]&exclude=hourly,minutely,alerts");
+//set your API KEY 
+$contents = get_data("https://api.forecast.io/forecast/API_KEY_HERE/$payload[1],$payload[2]?units=$payload[3]&exclude=hourly,minutely,alerts");
 
- 
 $forecast = json_decode($contents);
- 
+
 if(!$forecast) {
     die();
-}      
+}
 $response = array();
 $icons = array(
     'clear-day' => 0,

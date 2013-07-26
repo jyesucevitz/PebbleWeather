@@ -12,7 +12,7 @@
 #define MY_UUID { 0x91, 0x41, 0xB6, 0x28, 0xBC, 0x89, 0x49, 0x8E, 0xB1, 0x47, 0x04, 0x9F, 0x49, 0xC0, 0x99, 0xAD }
 
 PBL_APP_INFO(MY_UUID,
-             "Dookie Weather", "NBASH", // Modification of "Roboto Weather" by Martin Rosinski Ripoff of Futura Weather by Niknam 
+             "Dookie Weather", "NBASH", // Modification of "Roboto Weather" by Martin Rosinski
              1, 71, /* App version */
              RESOURCE_ID_IMAGE_MENU_ICON,
              APP_INFO_WATCH_FACE);
@@ -60,6 +60,7 @@ void failed(int32_t cookie, int http_status, void* context) {
 		text_layer_set_text(&weather_layer.lowvalue_layer, "??");
 		text_layer_set_text(&weather_layer.shvalue_layer, "??");
 		text_layer_set_text(&weather_layer.smvalue_layer, "??");
+		located = false;
 	}
 	
 	link_monitor_handle_failure(http_status);
@@ -195,7 +196,7 @@ void handle_init(AppContextRef ctx)
     ResHandle res_d;
     ResHandle res_h;
 
-    window_init(&window, "Futura");
+    window_init(&window, "Dookie");
     window_stack_push(&window, true /* Animated */);
     window_set_background_color(&window, GColorBlack);
 
@@ -280,7 +281,7 @@ void request_weather() {
 	}
 	// Build the HTTP request
 	DictionaryIterator *body;
-	HTTPResult result = http_out_get("http://YOURWEATHERFILEHERE/weather.php", WEATHER_HTTP_COOKIE, &body);
+	HTTPResult result = http_out_get("http://link_to_somewhere/weather.php", WEATHER_HTTP_COOKIE, &body);
 	if(result != HTTP_OK) {
 		weather_layer_set_icon(&weather_layer, WEATHER_ICON_NO_WEATHER);
 		return;
