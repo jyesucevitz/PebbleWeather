@@ -89,8 +89,6 @@ void time_layer_set_text_color(TimeLayer *tl, GColor color)
 {
     tl->text_color = color;
 
-
-
     if (tl->hour_text && tl->minute_text)
     {
         layer_mark_dirty(&(tl->layer));
@@ -117,10 +115,10 @@ void time_layer_init(TimeLayer *tl, GRect frame)
 {
     layer_init(&tl->layer, frame);
     tl->layer.update_proc = (LayerUpdateProc)time_layer_update_proc;
-    tl->text_color = GColorBlack;
+    tl->text_color = GColorWhite;
     tl->background_color = GColorClear;
     tl->overflow_mode = GTextOverflowModeWordWrap;
 
-    //tl->hour_font = fonts_load_custom_font(resource_get_handle(RESOURCE_ID_BIG_52));
-    //tl->minute_font = tl->hour_font;
+    tl->hour_font = fonts_get_system_font(FONT_KEY_GOTHIC_14_BOLD);
+    tl->minute_font = tl->hour_font;
 }

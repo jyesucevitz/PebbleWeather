@@ -3,13 +3,9 @@
 #include "pebble_fonts.h"
 #include "util.h"
 #include "weather_layer.h"
-#include "config.h"
-//left,
-#define WEATHER_ICON_FRAME  (GRect(14, 8, 50, 50))
-#define WEATHER_TEMP_FRAME  (GRect(65, 5, 65, 50))
-#define WEATHER_SUNSET_FRAME  (GRect(0, 74, 144, 15))
-#define WEATHER_HL_FRAME    (GRect(0, 57, 144, 30))
 
+
+	
 static uint8_t WEATHER_ICONS[] = {
 	RESOURCE_ID_ICON_CLEAR_DAY,
 	RESOURCE_ID_ICON_CLEAR_NIGHT,
@@ -23,49 +19,83 @@ static uint8_t WEATHER_ICONS[] = {
 	RESOURCE_ID_ICON_PARTLY_CLOUDY_NIGHT,
 	RESOURCE_ID_ICON_ERROR,
 };
-
-void weather_layer_init(WeatherLayer* weather_layer) {
-	layer_init(&weather_layer->layer, GRect(0, 0, 144, 168));
+//LEFT TOP WIDE HIGH
+void weather_layer_init(WeatherLayer* weather_layer, GPoint pos) {
+	layer_init(&weather_layer->layer, GRect(0,0,144,85));
 	
-/*
-TEMP FRAME
-******************************/
-	text_layer_init(&weather_layer->temp_layer, WEATHER_TEMP_FRAME);
+	// Add background layer
+	text_layer_init(&weather_layer->temp_layer_background, GRect(0, 0, 144, 95));
+	text_layer_set_background_color(&weather_layer->temp_layer_background, GColorWhite);
+	layer_add_child(&weather_layer->layer, &weather_layer->temp_layer_background.layer);
+	
+    // Add temperature layer
+	text_layer_init(&weather_layer->temp_layer, GRect(65, 0, 72, 95));
 	text_layer_set_background_color(&weather_layer->temp_layer, GColorClear);
-  text_layer_set_text_color(&weather_layer->temp_layer, COLOUR_TEXT_TOP_SPLIT);
 	text_layer_set_text_alignment(&weather_layer->temp_layer, GTextAlignmentCenter);
-  text_layer_set_font(&weather_layer->temp_layer, fonts_load_custom_font(resource_get_handle(RESOURCE_ID_MEDIUM_45)));
+	text_layer_set_font(&weather_layer->temp_layer, fonts_load_custom_font(resource_get_handle(RESOURCE_ID_TEMP_45)));
 	layer_add_child(&weather_layer->layer, &weather_layer->temp_layer.layer);
 
-/*
-HIGH / LOW FRAME
-******************************/
-	text_layer_init(&weather_layer->temp_layer_highlow, WEATHER_HL_FRAME);
-	text_layer_set_background_color(&weather_layer->temp_layer_highlow, GColorClear);
-  text_layer_set_text_color(&weather_layer->temp_layer_highlow, COLOUR_TEXT_TOP_SPLIT);
-	text_layer_set_text_alignment(&weather_layer->temp_layer_highlow, GTextAlignmentCenter);
-	text_layer_set_font(&weather_layer->temp_layer_highlow, fonts_load_custom_font(resource_get_handle(RESOURCE_ID_SMALL_14)));
-	layer_add_child(&weather_layer->layer, &weather_layer->temp_layer_highlow.layer);
+	// Add LOW Lable Layer
+	text_layer_init(&weather_layer->lowlabel_layer, GRect(4, 52, 40, 18));
+	text_layer_set_background_color(&weather_layer->lowlabel_layer, GColorClear);
+	//text_layer_set_text_color(&weather_layer->lowlabel_layer, GColorWhite);
+	text_layer_set_text_alignment(&weather_layer->lowlabel_layer, GTextAlignmentLeft);
+	text_layer_set_font(&weather_layer->lowlabel_layer, fonts_load_custom_font(resource_get_handle(RESOURCE_ID_OpenSans_14)));
+	layer_add_child(&weather_layer->layer, &weather_layer->lowlabel_layer.layer);
+	//ADD LOW LABEL VALUE LAYER
+	text_layer_init(&weather_layer->lowvalue_layer, GRect(44, 52, 32, 18));
+	text_layer_set_background_color(&weather_layer->lowvalue_layer, GColorClear);
+	//text_layer_set_text_color(&weather_layer->lowvalue_layer, GColorWhite);
+	text_layer_set_text_alignment(&weather_layer->lowvalue_layer, GTextAlignmentLeft);
+	text_layer_set_font(&weather_layer->lowvalue_layer, fonts_load_custom_font(resource_get_handle(RESOURCE_ID_OpenSans_14)));
+	layer_add_child(&weather_layer->layer, &weather_layer->lowvalue_layer.layer);	
+	// Add High Lable Layer
+	text_layer_init(&weather_layer->highlabel_layer, GRect(73, 52, 40, 18));
+	text_layer_set_background_color(&weather_layer->highlabel_layer, GColorClear);
+	//text_layer_set_text_color(&weather_layer->highlabel_layer, GColorWhite);
+	text_layer_set_text_alignment(&weather_layer->highlabel_layer, GTextAlignmentLeft);
+	text_layer_set_font(&weather_layer->highlabel_layer, fonts_load_custom_font(resource_get_handle(RESOURCE_ID_OpenSans_14)));
+	layer_add_child(&weather_layer->layer, &weather_layer->highlabel_layer.layer);
+	//ADD HIGH LABEL VALUE LAYER
+	text_layer_init(&weather_layer->highvalue_layer, GRect(115, 52, 32, 18));
+	text_layer_set_background_color(&weather_layer->highvalue_layer, GColorClear);
+	//text_layer_set_text_color(&weather_layer->highvalue_layer, GColorWhite);
+	text_layer_set_text_alignment(&weather_layer->highvalue_layer, GTextAlignmentLeft);
+	text_layer_set_font(&weather_layer->highvalue_layer, fonts_load_custom_font(resource_get_handle(RESOURCE_ID_OpenSans_14)));
+	layer_add_child(&weather_layer->layer, &weather_layer->highvalue_layer.layer);
+
 	
-/*
-SUNSET FRAME
-******************************/
-	text_layer_init(&weather_layer->temp_layer_sunset, WEATHER_SUNSET_FRAME);
-	text_layer_set_background_color(&weather_layer->temp_layer_sunset, GColorBlack);
-  text_layer_set_text_color(&weather_layer->temp_layer_sunset, GColorWhite);
-	text_layer_set_text_alignment(&weather_layer->temp_layer_sunset, GTextAlignmentCenter);
-	text_layer_set_font(&weather_layer->temp_layer_sunset, fonts_load_custom_font(resource_get_handle(RESOURCE_ID_SMALL_14)));
-	layer_add_child(&weather_layer->layer, &weather_layer->temp_layer_sunset.layer);
+//SUNSET
+	text_layer_init(&weather_layer->sslabel_layer, GRect(0, 68, 78, 18));
+	text_layer_set_background_color(&weather_layer->sslabel_layer, GColorBlack);
+	text_layer_set_text_color(&weather_layer->sslabel_layer, GColorWhite);
+	text_layer_set_text_alignment(&weather_layer->sslabel_layer, GTextAlignmentRight);
+	text_layer_set_font(&weather_layer->sslabel_layer, fonts_load_custom_font(resource_get_handle(RESOURCE_ID_OpenSans_14)));
+	layer_add_child(&weather_layer->layer, &weather_layer->sslabel_layer.layer);
+	
+//shvalue_layer	
+	text_layer_init(&weather_layer->shvalue_layer, GRect(78, 68, 40, 18));
+	text_layer_set_background_color(&weather_layer->shvalue_layer, GColorBlack);
+	text_layer_set_text_color(&weather_layer->shvalue_layer, GColorWhite);
+	text_layer_set_text_alignment(&weather_layer->shvalue_layer, GTextAlignmentLeft);
+	text_layer_set_font(&weather_layer->shvalue_layer, fonts_load_custom_font(resource_get_handle(RESOURCE_ID_OpenSans_14)));
+	layer_add_child(&weather_layer->layer, &weather_layer->shvalue_layer.layer);
+	
+//smvalue_layer	
+	text_layer_init(&weather_layer->smvalue_layer, GRect(98, 68, 60, 18));
+	text_layer_set_background_color(&weather_layer->smvalue_layer, GColorBlack);
+	text_layer_set_text_color(&weather_layer->smvalue_layer, GColorWhite);
+	text_layer_set_text_alignment(&weather_layer->smvalue_layer, GTextAlignmentLeft);
+	text_layer_set_font(&weather_layer->smvalue_layer, fonts_load_custom_font(resource_get_handle(RESOURCE_ID_OpenSans_14)));
+	layer_add_child(&weather_layer->layer, &weather_layer->smvalue_layer.layer);
+	
 	
 	// Note absence of icon layer
 	weather_layer->has_weather_icon = false;
 }
 
-
-/*
-ICON LAYER
-******************************/
-void weather_layer_set_icon(WeatherLayer* weather_layer, WeatherIcon icon) {	
+void weather_layer_set_icon(WeatherLayer* weather_layer, WeatherIcon icon) {
+	
 	// Remove any possible existing weather icon
 	if(weather_layer->has_weather_icon) {
 		layer_remove_from_parent(&weather_layer->icon_layer.layer.layer);
@@ -73,40 +103,79 @@ void weather_layer_set_icon(WeatherLayer* weather_layer, WeatherIcon icon) {
 		weather_layer->has_weather_icon = false;
 	}
 	
+	// Add weather icon
 	bmp_init_container(WEATHER_ICONS[icon], &weather_layer->icon_layer);
 	layer_add_child(&weather_layer->layer, &weather_layer->icon_layer.layer.layer);
-	layer_set_frame(&weather_layer->icon_layer.layer.layer, WEATHER_ICON_FRAME);
+	layer_set_frame(&weather_layer->icon_layer.layer.layer, GRect(10, 3, 51, 51));
 	weather_layer->has_weather_icon = true;
 }
-/*
-HIGH / LOW LAYE
-******************************/
-void weather_layer_set_highlow(WeatherLayer* weather_layer, int16_t high, int16_t low) {
-  snprintf(weather_layer->highlow, sizeof(weather_layer->highlow), "LOW: %d°  HIGH: %d°", low, high);
-  text_layer_set_text(&weather_layer->temp_layer_highlow, weather_layer->highlow);
+//SUNSET
+void weather_layer_set_sh(WeatherLayer* weather_layer, int16_t ss) {
+	memcpy(weather_layer->sh_str, itoa(ss), 4);
+	int sh_pos = strlen(weather_layer->sh_str);
+	memcpy(&weather_layer->sh_str[sh_pos], ":", 3);
+	text_layer_set_text(&weather_layer->shvalue_layer, weather_layer->sh_str);
+	
+	memcpy(&weather_layer->sslbl_str[0], "SUNSET:  ", 8);
+	text_layer_set_text(&weather_layer->sslabel_layer, weather_layer->sslbl_str);
 }
-/*
-TEMP LAYER
-******************************/
+void weather_layer_set_sm(WeatherLayer* weather_layer, int16_t sm) {
+	memcpy(weather_layer->sm_str, itoa(sm), 4);
+	int sm_pos = strlen(weather_layer->sm_str);
+	memcpy(&weather_layer->sm_str[sm_pos], " ", 3);
+	text_layer_set_text(&weather_layer->smvalue_layer, weather_layer->sm_str);
+	
+}
+
+
+void weather_layer_set_high(WeatherLayer* weather_layer, int16_t h) {
+	memcpy(weather_layer->high_str, itoa(h), 4);
+	int degree_pos = strlen(weather_layer->high_str);
+	memcpy(&weather_layer->high_str[degree_pos], "°", 3);
+	text_layer_set_text(&weather_layer->highvalue_layer, weather_layer->high_str);
+	
+	memcpy(&weather_layer->highlbl_str[0], "HIGH :", 6);
+	text_layer_set_text(&weather_layer->highlabel_layer, weather_layer->highlbl_str);
+}
+
+
+void weather_layer_set_low(WeatherLayer* weather_layer, int16_t l) {
+	memcpy(weather_layer->low_str, itoa(l), 4);
+	int degree_poss = strlen(weather_layer->low_str);
+	memcpy(&weather_layer->low_str[degree_poss], "°", 3);
+	text_layer_set_text(&weather_layer->lowvalue_layer, weather_layer->low_str);
+	
+	memcpy(&weather_layer->lowlbl_str[0], "LOW :", 5);
+	text_layer_set_text(&weather_layer->lowlabel_layer, weather_layer->lowlbl_str);
+}
+
+
 void weather_layer_set_temperature(WeatherLayer* weather_layer, int16_t t) {
-  snprintf(weather_layer->temperature, sizeof(weather_layer->temperature), "%d°", t);
-	text_layer_set_text(&weather_layer->temp_layer, weather_layer->temperature);  
+	memcpy(weather_layer->temp_str, itoa(t), 4);
+	int degree_pos = strlen(weather_layer->temp_str);
+	
+	if (strlen(weather_layer->temp_str) == 1 || 
+		(strlen(weather_layer->temp_str) == 2 && weather_layer->temp_str[0] != '1')) {
+	  // Don't move temperature if between 0-9° or 20°-99°
+	  text_layer_set_font(&weather_layer->temp_layer, fonts_load_custom_font(resource_get_handle(RESOURCE_ID_TEMP_45)));
+	  text_layer_set_text_alignment(&weather_layer->temp_layer, GTextAlignmentCenter);
+	  memcpy(&weather_layer->temp_str[degree_pos], "°", 3);
+	} else if (strlen(weather_layer->temp_str) == 2 && weather_layer->temp_str[0] == '1') {
+	  // Move temperature slightly to the left if between 10°-19°
+	  text_layer_set_font(&weather_layer->temp_layer, fonts_load_custom_font(resource_get_handle(RESOURCE_ID_TEMP_45)));
+	  text_layer_set_text_alignment(&weather_layer->temp_layer, GTextAlignmentLeft);
+	  memcpy(&weather_layer->temp_str[degree_pos], "°", 3); 
+	} else if (strlen(weather_layer->temp_str) > 2) { 
+	  // Shrink font size if above 99° or below -9°
+	  text_layer_set_font(&weather_layer->temp_layer, fonts_load_custom_font(resource_get_handle(RESOURCE_ID_TEMP_45)));
+	  text_layer_set_text_alignment(&weather_layer->temp_layer, GTextAlignmentCenter);
+	  memcpy(&weather_layer->temp_str[degree_pos], "°", 3);
+	}
+	
+	text_layer_set_text(&weather_layer->temp_layer, weather_layer->temp_str);
 }
-/*
-SUNSET Layer
-******************************/
-void weather_layer_set_sunset(WeatherLayer* weather_layer, int16_t sunset_h, int16_t sunset_m) {
-  snprintf(weather_layer->sunsettime, sizeof(weather_layer->sunsettime), "SUNSET : %d:%02d", sunset_h, sunset_m);
-	text_layer_set_text(&weather_layer->temp_layer_sunset, weather_layer->sunsettime); 
-	layer_mark_dirty(&(weather_layer->layer));
-}
-/*
-******************************/
-void weather_layer_set_error(WeatherLayer* weather_layer, int http_status) {
-	weather_layer_set_icon(weather_layer, WEATHER_ICON_NO_WEATHER);
-  snprintf(weather_layer->temperature, sizeof(weather_layer->temperature), "%d", http_status);
-	text_layer_set_text(&weather_layer->temp_layer, weather_layer->temperature);  
-}
+
+
 
 void weather_layer_deinit(WeatherLayer* weather_layer) {
 	if(weather_layer->has_weather_icon)

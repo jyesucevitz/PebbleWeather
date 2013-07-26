@@ -5,13 +5,27 @@ typedef struct {
 	Layer layer;
 	BmpContainer icon_layer;
 	TextLayer temp_layer;
+	TextLayer highvalue_layer;
+	TextLayer highlabel_layer;
+	
+	TextLayer sslabel_layer;
+	TextLayer shvalue_layer;
+	TextLayer smvalue_layer;
+	
+	TextLayer lowvalue_layer;
+	TextLayer lowlabel_layer;
 	TextLayer temp_layer_background;
-	TextLayer temp_layer_highlow;
-	TextLayer temp_layer_sunset;
 	bool has_weather_icon;
-	char temperature[10];
-  char highlow[36];
-  char sunsettime[36];
+	char temp_str[5];
+	char high_str[10];
+	char highlbl_str[10];
+	char lowlbl_str[10];
+	char low_str[10];
+	
+	char sslbl_str[10];
+	char sh_str[10];
+	char sm_str[10];
+	
 } WeatherLayer;
 
 typedef enum {
@@ -29,12 +43,12 @@ typedef enum {
 	WEATHER_ICON_COUNT
 } WeatherIcon;
 
-void weather_layer_init(WeatherLayer* weather_layer);
+void weather_layer_init(WeatherLayer* weather_layer, GPoint pos);
 void weather_layer_deinit(WeatherLayer* weather_layer);
 void weather_layer_set_icon(WeatherLayer* weather_layer, WeatherIcon icon);
 void weather_layer_set_temperature(WeatherLayer* weather_layer, int16_t temperature);
-void weather_layer_set_highlow(WeatherLayer* weather_layer, int16_t high, int16_t low);
-void weather_layer_set_error(WeatherLayer* weather_layer, int http_status);
-void weather_layer_set_sunset(WeatherLayer* weather_layer, int16_t sunset_h, int16_t sunset_m);
-
+void weather_layer_set_high(WeatherLayer* weather_layer, int16_t high);
+void weather_layer_set_low(WeatherLayer* weather_layer, int16_t low);
+void weather_layer_set_sh(WeatherLayer* weather_layer, int16_t sh);
+void weather_layer_set_sm(WeatherLayer* weather_layer, int16_t sm);
 #endif

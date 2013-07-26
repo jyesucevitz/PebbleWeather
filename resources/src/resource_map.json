@@ -1,51 +1,51 @@
 {
     "media": [
         {
-            "trackingAdjust": -1,
-            "characterRegex": "[0-9 : A-Z \u00b0]",
-            "defName": "SMALL_14",
+            "trackingAdjust": 1,
+            "characterRegex": "[0-9 :]",
+            "defName": "TIME_45",
             "type": "font",
-            "file": "fonts/OpenSans-Bold.ttf"
+            "file": "fonts/helveticaneue-webfont.ttf"
+        },
+        {
+            "trackingAdjust": 3,
+            "characterRegex": "[a-z A-Z 0-9]",
+            "defName": "DATE_19",
+            "type": "font",
+            "file": "fonts/BebasNeue.ttf"
+        },
+        {
+            "characterRegex": "[0-9\u00b0:?]",
+            "defName": "TEMP_45",
+            "type": "font",
+            "file": "fonts/MuroRegular.ttf"
         },
         {
             "trackingAdjust": 2,
             "characterRegex": "[0-9 :]",
-            "defName": "HUGE_55",
-            "type": "font",
-            "file": "fonts/BebasNeue.ttf"
-        },
-        {
-            "characterRegex": "[0-9 :A-Z a-z]",
-            "defName": "SMALL_20",
-            "type": "font",
-            "file": "fonts/BebasNeue.ttf"
-        },
-        {
-            "defName": "ICON_HAIL",
-            "type": "png",
-            "file": "images/hail.png"
-        },
-        {
-            "defName": "ICON_TORNADO",
-            "type": "png",
-            "file": "images/tornado.png"
-        },
-        {
-            "characterRegex": "[0-9 :]",
-            "defName": "BIG_58",
+            "defName": "TIME_55",
             "type": "font",
             "file": "fonts/MuroRegular.ttf"
         },
         {
-            "characterRegex": "[0-9 :A-Z a-z \u00b0]",
-            "defName": "MEDIUM_45",
+            "characterRegex": "[a-z A-Z 0-9]",
+            "defName": "DATE_14",
             "type": "font",
-            "file": "fonts/MuroRegular.ttf"
+            "file": "fonts/OpenSans-Regular.ttf"
         },
         {
-            "defName": "ICON_ERROR",
-            "type": "png",
-            "file": "images/error.png"
+            "trackingAdjust": -1,
+            "characterRegex": "[0-9:#? A-Z \u00b0]",
+            "defName": "OpenSans_14",
+            "type": "font",
+            "file": "fonts/OpenSans-Bold.ttf"
+        },
+        {
+            "trackingAdjust": 1,
+            "characterRegex": "[0-9 :? A-Z - a-z]",
+            "defName": "OpenSans_16",
+            "type": "font",
+            "file": "fonts/OpenSans-Bold.ttf"
         },
         {
             "defName": "ICON_WIND",
@@ -53,14 +53,9 @@
             "file": "images/wind.png"
         },
         {
-            "defName": "ICON_SNOW",
+            "defName": "ICON_ERROR",
             "type": "png",
-            "file": "images/snow.png"
-        },
-        {
-            "defName": "ICON_RAIN",
-            "type": "png",
-            "file": "images/rain.png"
+            "file": "images/error.png"
         },
         {
             "defName": "ICON_PARTLY_CLOUDY_NIGHT",
@@ -73,14 +68,29 @@
             "file": "images/partly-cloudy-day.png"
         },
         {
+            "defName": "ICON_CLOUDY",
+            "type": "png",
+            "file": "images/cloudy.png"
+        },
+        {
             "defName": "ICON_FOG",
             "type": "png",
             "file": "images/fog.png"
         },
         {
-            "defName": "ICON_CLOUDY",
+            "defName": "ICON_SLEET",
             "type": "png",
-            "file": "images/cloudy.png"
+            "file": "images/sleet.png"
+        },
+        {
+            "defName": "ICON_SNOW",
+            "type": "png",
+            "file": "images/snow.png"
+        },
+        {
+            "defName": "ICON_RAIN",
+            "type": "png",
+            "file": "images/rain.png"
         },
         {
             "defName": "ICON_CLEAR_NIGHT",
@@ -93,29 +103,9 @@
             "file": "images/clear-day.png"
         },
         {
-            "defName": "ICON_SLEET",
-            "type": "png",
-            "file": "images/sleet.png"
-        },
-        {
-            "defName": "ICON_THUNDER",
-            "type": "png",
-            "file": "images/thunder.png"
-        },
-        {
-            "defName": "IMAGE_BACKGROUND_SPLIT",
-            "type": "png",
-            "file": "images/background-split.png"
-        },
-        {
-            "defName": "IMAGE_BACKGROUND",
-            "type": "png",
-            "file": "images/background.png"
-        },
-        {
             "defName": "IMAGE_MENU_ICON",
             "type": "png",
-            "file": "images/menu_icon.png"
+            "file": "images/menu_icon_roboto.png"
         }
     ],
     "friendlyVersion": "VERSION",
